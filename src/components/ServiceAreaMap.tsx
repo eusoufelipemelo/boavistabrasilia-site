@@ -65,6 +65,8 @@ export function ServiceAreaMap({ regions, whatsapp }: { regions: Region[]; whats
           dot.addEventListener("click", () => setActive(i));
           return { marker, popup, el: dot };
         });
+        // "load" pode já ter acontecido antes deste ponto; "idle" garante o aviso saindo da tela.
+        map.once("idle", () => setReady(true));
         map.on("load", () => {
           setReady(true);
           const bounds = new maplibregl.LngLatBounds();
