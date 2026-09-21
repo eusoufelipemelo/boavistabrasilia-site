@@ -1,0 +1,607 @@
+@import "tailwindcss";
+
+/*
+ * As cores vêm do site.config.ts (theme) e são aplicadas como variáveis no <html>.
+ * Os valores abaixo são só o padrão caso alguma variável falte.
+ * A marca é monocromática: um grafite (#201E1E) e apoios derivados dele.
+ */
+:root {
+  --brand: #201e1e;
+  --brand-contrast: #ffffff;
+  --brand-soft: #e4e2de;
+  --ink: #201e1e;
+  --muted: #63605c;
+  --surface: #f4f3f1;
+  --surface-alt: #e9e7e3;
+  --line: #d6d3ce;
+  --radius: 2px;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-contrast: var(--brand-contrast);
+  --color-brand-soft: var(--brand-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-line: var(--line);
+  --radius-brand: var(--radius);
+  /* Uma família só (Manrope): o contraste vem do peso e do tamanho. */
+  --font-display: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Estilos de base na camada "base": utilitários do Tailwind sempre ganham deles. */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+  }
+
+  /* Títulos grandes fecham mais o espacejamento, como no logotipo. */
+  .display {
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Sobre foto e sobre o grafite, o foco precisa ser claro para aparecer. */
+  .on-dark :focus-visible,
+  [data-hero] :focus-visible {
+    outline-color: var(--surface);
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--surface);
+  }
+}
+
+/*
+ * Classes de componente ficam na camada "components": utilitários do Tailwind (hidden, px-4, mt-6...)
+ * continuam valendo por cima delas.
+ */
+@layer components {
+  /* Links de texto: sublinhado discreto que fica cheio no hover */
+  .link {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
+    transition: text-decoration-color 0.25s ease;
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Botões */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--brand-contrast);
+  }
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--ink) 82%, var(--muted));
+  }
+  .btn-secondary {
+    border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+    color: var(--ink);
+    background: transparent;
+  }
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    background: color-mix(in srgb, var(--ink) 4%, transparent);
+  }
+  .btn-inverse {
+    background: var(--surface);
+    color: var(--ink);
+  }
+  .btn-inverse:hover {
+    background: color-mix(in srgb, var(--surface) 82%, var(--muted));
+  }
+  /* Sobre foto: contorno claro que preenche no hover */
+  .btn-ghost-light {
+    border: 1px solid color-mix(in srgb, #ffffff 45%, transparent);
+    color: #ffffff;
+    background: transparent;
+  }
+  .btn-ghost-light:hover {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--surface);
+  }
+
+  /* Corpo dos artigos (HTML do CMS) */
+  .prose-outbox {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--ink);
+    overflow-wrap: break-word;
+  }
+  .prose-outbox > * + * {
+    margin-top: 1.25em;
+  }
+  .prose-outbox h2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    font-weight: 600;
+    margin-top: 2.25em;
+    scroll-margin-top: 6rem;
+  }
+  .prose-outbox h3 {
+    font-size: 1.375rem;
+    line-height: 1.3;
+    font-weight: 600;
+    margin-top: 1.85em;
+    scroll-margin-top: 6rem;
+  }
+  .prose-outbox h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.6em;
+  }
+  .prose-outbox h2 + *,
+  .prose-outbox h3 + *,
+  .prose-outbox h4 + * {
+    margin-top: 0.6em;
+  }
+  .prose-outbox a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .prose-outbox strong {
+    font-weight: 650;
+  }
+  .prose-outbox ul,
+  .prose-outbox ol {
+    padding-left: 1.4em;
+  }
+  .prose-outbox ul {
+    list-style: disc;
+  }
+  .prose-outbox ol {
+    list-style: decimal;
+  }
+  .prose-outbox li + li {
+    margin-top: 0.45em;
+  }
+  .prose-outbox li::marker {
+    color: var(--muted);
+  }
+  .prose-outbox blockquote {
+    border-left: 2px solid var(--ink);
+    padding: 0.25em 0 0.25em 1.1em;
+    color: var(--muted);
+  }
+  .prose-outbox img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+  .prose-outbox figcaption {
+    margin-top: 0.6em;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .prose-outbox hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 2.5em 0;
+  }
+  .prose-outbox code {
+    font-size: 0.9em;
+    background: var(--surface-alt);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
+  }
+  .prose-outbox pre {
+    background: var(--ink);
+    color: var(--surface);
+    padding: 1em 1.2em;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-size: 0.9rem;
+  }
+  .prose-outbox pre code {
+    background: none;
+    padding: 0;
+  }
+  .prose-outbox table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .prose-outbox th,
+  .prose-outbox td {
+    border-bottom: 1px solid var(--line);
+    padding: 0.6em 0.8em;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-outbox th {
+    font-weight: 650;
+  }
+
+  /* FAQ com <details> */
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item .faq-icon {
+    transition: transform 0.25s ease;
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  /*
+   * Legenda de foto: um traço curto antes do texto, como a marcação de um desenho de marcenaria.
+   * Diz o que aparece na foto, sem caixa alta e sem moldura.
+   */
+  .legenda {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+  .legenda::before {
+    content: "";
+    flex: 0 0 1.5rem;
+    height: 1px;
+    background: currentColor;
+    transform: translateY(-0.35em);
+  }
+  .legenda-on-dark {
+    color: color-mix(in srgb, #ffffff 75%, transparent);
+  }
+
+  /* Carrossel no celular: rola na horizontal com encaixe, sem barra visível. */
+  .snap-row {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  @media (min-width: 640px) {
+    .snap-row {
+      scroll-padding-inline: 1.5rem;
+    }
+  }
+  .snap-row::-webkit-scrollbar {
+    display: none;
+  }
+  .snap-row > * {
+    scroll-snap-align: start;
+  }
+
+  /*
+   * Títulos: cada palavra sobe de dentro de uma máscara quando o título entra na tela.
+   * Só esconde com JS ativo (classe "js" no <html>), então sem JS tudo aparece normalmente.
+   */
+  .split-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+  .split-word > span {
+    display: inline-block;
+    transition:
+      transform 1s cubic-bezier(0.2, 0.75, 0.15, 1),
+      opacity 1s ease;
+    transition-delay: calc(var(--i, 0) * 55ms + var(--d, 0ms));
+  }
+  .js [data-reveal="words"]:not([data-revealed]) .split-word > span {
+    transform: translateY(108%);
+    opacity: 0;
+  }
+
+  /* Textos e blocos: sobem suavemente */
+  [data-reveal="fade"] {
+    transition:
+      opacity 1s ease,
+      transform 1s cubic-bezier(0.2, 0.75, 0.15, 1),
+      filter 1s ease;
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal="fade"]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+
+  /*
+   * Imagens: a foto é descoberta de baixo para cima, como uma cortina. O recorte fica na foto
+   * (não no bloco), para o bloco continuar "visível" para o IntersectionObserver.
+   */
+  [data-reveal="image"] img {
+    clip-path: inset(0 0 0 0);
+    transition:
+      clip-path 1.3s cubic-bezier(0.7, 0, 0.2, 1),
+      transform 1.8s cubic-bezier(0.2, 0.75, 0.15, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal="image"]:not([data-revealed]) img {
+    clip-path: inset(100% 0 0 0);
+    transform: scale(1.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal]:not([data-revealed]) .split-word > span,
+    .js [data-reveal="fade"]:not([data-revealed]),
+    .js [data-reveal="image"]:not([data-revealed]) img {
+      transform: none;
+      opacity: 1;
+      filter: none;
+      clip-path: none;
+    }
+  }
+
+  /*
+   * Topo da Home: a foto se aproxima devagar e o segundo quadro (mesmo ângulo, foco no
+   * painel de madeira) aparece por cima uma única vez, depois que a página carrega.
+   */
+  .hero-media {
+    animation: hero-zoom 16s cubic-bezier(0.2, 0.6, 0.3, 1) both;
+  }
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1.1);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .hero-focus {
+    opacity: 0;
+    animation: hero-focus 2.6s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
+  }
+  @keyframes hero-focus {
+    to {
+      opacity: 1;
+    }
+  }
+  .scroll-cue {
+    animation: scroll-cue 2.6s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+    transform-origin: top;
+  }
+  @keyframes scroll-cue {
+    0% {
+      transform: scaleY(0);
+    }
+    45% {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+    55% {
+      transform: scaleY(1);
+      transform-origin: bottom;
+    }
+    100% {
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-media,
+    .scroll-cue {
+      animation: none;
+    }
+    .hero-focus {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  /* Foto que aproxima devagar no hover (cards de ambiente e galeria) */
+  .zoom-media img {
+    transition:
+      transform 1.1s cubic-bezier(0.2, 0.75, 0.15, 1),
+      clip-path 1.3s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  .zoom-media:hover img,
+  .zoom-media:focus-visible img {
+    transform: scale(1.05);
+  }
+
+  /* Perguntas frequentes: abre com altura animada onde o navegador suporta */
+  .faq-item {
+    interpolate-size: allow-keywords;
+  }
+  .faq-item::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height 0.45s cubic-bezier(0.2, 0.75, 0.15, 1),
+      content-visibility 0.45s allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    height: auto;
+  }
+
+  /* Mapa: sem cor, para a cor vir só das fotos */
+  .map-canvas .maplibregl-canvas {
+    filter: grayscale(1) contrast(1.05) brightness(1.02);
+  }
+  .map-canvas .maplibregl-ctrl-group {
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px -8px rgb(32 30 30 / 0.35);
+  }
+  .map-canvas .maplibregl-popup-content {
+    border-radius: 2px;
+    padding: 14px 16px;
+    font-family: var(--font-brand), system-ui, sans-serif;
+    box-shadow: 0 16px 36px -14px rgb(32 30 30 / 0.4);
+  }
+
+  /* Campos do formulário */
+  .field {
+    width: 100%;
+    min-height: 3.25rem;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    padding: 0.85rem 0 0.6rem;
+    font-size: 1rem;
+    color: var(--ink);
+    border-radius: 0;
+    transition: border-color 0.2s ease;
+  }
+  .field::placeholder {
+    color: color-mix(in srgb, var(--muted) 75%, transparent);
+  }
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--ink);
+    box-shadow: 0 1px 0 0 var(--ink);
+  }
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2363605C' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.25rem center;
+    padding-right: 1.75rem;
+  }
+  .chip-input:checked + span {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--brand-contrast);
+  }
+  .chip-input:focus-visible + span {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+
+  @keyframes gallery-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+  @keyframes lightbox-in {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+
+  /* Marcadores do mapa */
+  .region-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: var(--ink);
+    border: 3px solid var(--surface);
+    box-shadow:
+      0 0 0 0 rgb(32 30 30 / 0.45),
+      0 4px 12px -2px rgb(32 30 30 / 0.4);
+    cursor: pointer;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  .region-dot:hover,
+  .region-dot.is-active {
+    transform: scale(1.35);
+    box-shadow:
+      0 0 0 10px rgb(32 30 30 / 0.14),
+      0 4px 12px -2px rgb(32 30 30 / 0.4);
+  }
+  .region-popup-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .region-popup-link {
+    display: inline-block;
+    margin-top: 0.3rem;
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/*
+ * Rolagem suave (Lenis). Fora das camadas de propósito: precisa vencer o "h-full" do <html>,
+ * senão o <html> fica com a altura da tela e o Lenis não percebe quando a página cresce.
+ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
