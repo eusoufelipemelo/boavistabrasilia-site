@@ -534,9 +534,18 @@
     border-color: var(--ink);
     color: var(--brand-contrast);
   }
+  /* sobre o grafite, o marcador escolhido inverte: fundo claro, texto grafite */
+  .chip-input.chip-on-dark:checked + span {
+    background: var(--surface);
+    border-color: var(--surface);
+    color: var(--ink);
+  }
   .chip-input:focus-visible + span {
     outline: 2px solid var(--ink);
     outline-offset: 2px;
+  }
+  .chip-input.chip-on-dark:focus-visible + span {
+    outline-color: var(--surface);
   }
 
   @keyframes gallery-in {

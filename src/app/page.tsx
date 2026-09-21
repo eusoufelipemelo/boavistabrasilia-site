@@ -10,7 +10,8 @@ import { ArrowIcon, CheckIcon, WhatsAppIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadSection } from "@/components/LeadSection";
 import { PostCard } from "@/components/PostCard";
-import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { PartnersSection } from "@/components/PartnersSection";
+import { ProcessSteps } from "@/components/ProcessSteps";
 import { ProjectTile } from "@/components/ProjectTile";
 import { ServiceAreaMap } from "@/components/ServiceAreaMap";
 import { SplitTitle } from "@/components/SplitTitle";
@@ -239,36 +240,8 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ------------------------------------------------- quem responde / sócios */}
-      <section aria-labelledby="sobre" className="bg-surface py-20 sm:py-28">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden bg-surface-alt lg:col-span-5">
-              <Image src={siteConfig.about.expert.image.src} alt={siteConfig.about.expert.image.alt} fill sizes="(min-width: 1024px) 40vw, 92vw" className="object-cover" />
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <SplitTitle id="sobre" text="Quem responde pelos projetos" className="display text-[2.1rem] text-ink sm:text-[3rem]" />
-              <p data-reveal="fade" className="mt-7 max-w-[54ch] leading-relaxed text-muted">
-                {siteConfig.about.expert.bio}
-              </p>
-              <p data-reveal="fade" className="mt-8 text-[1.15rem] font-medium tracking-[-0.02em] text-ink">
-                {siteConfig.about.expert.name}
-              </p>
-              <p data-reveal="fade" className="text-[0.95rem] text-muted">
-                {siteConfig.about.expert.credentials}
-              </p>
-              <p data-reveal="fade" className="mt-8 max-w-[54ch] leading-relaxed text-muted">
-                A loja é conduzida por três sócios: {siteConfig.about.partners.map((p) => p.name).join(", ")}. Cada um responde por uma área, e é isso que
-                mantém o atendimento perto do cliente do começo ao fim.
-              </p>
-              <Link href="/sobre" data-reveal="fade" className="link mt-6 inline-flex min-h-11 items-center gap-2 font-medium text-ink">
-                Conhecer a história da loja
-                <ArrowIcon width={18} height={18} aria-hidden />
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
+      {/* ----------------------------------------------------------- os sócios */}
+      <PartnersSection />
 
       {/* ---------------------------------------------------------- atendimento */}
       <section aria-labelledby="etapas" className="bg-surface-alt py-20 sm:py-28">
@@ -278,7 +251,7 @@ export default async function HomePage() {
             title="Como o projeto acontece"
             text="Seis etapas, na ordem em que você vai viver cada uma. Em todas elas existe alguém responsável por avisar o que vem depois."
           />
-          <ProcessTimeline steps={siteConfig.process} />
+          <ProcessSteps steps={siteConfig.process} />
         </Container>
       </section>
 

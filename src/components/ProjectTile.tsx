@@ -1,38 +1,44 @@
 import Image from "next/image";
 import Link from "next/link";
 import { coverOf, heroOf, type Project } from "@/content/ambientes";
+import { ArrowIcon } from "./icons";
 
-/** Card de projeto com a foto ocupando todo o espaço e o título sobre ela. */
+/**
+ * Card de ambiente: a foto fica limpa, sem texto nem véu por cima, e o nome vem
+ * abaixo dela, em tipografia grande. A lista do que o ambiente costuma incluir
+ * aparece ao passar o mouse (e sempre no celular, onde não existe hover).
+ */
 export function ProjectTile({
   project,
   className = "",
-  sizes = "(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 85vw",
+  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 92vw",
   wide = false,
   headingLevel: H = "h3",
 }: {
   project: Project;
   className?: string;
   sizes?: string;
-  /** Usa a foto horizontal do projeto (cards largos). */
+  /** Usa a foto horizontal do ambiente (cards largos). */
   wide?: boolean;
   headingLevel?: "h2" | "h3";
 }) {
   const img = wide ? heroOf(project) : coverOf(project);
   return (
-    <article className={`group relative overflow-hidden bg-ink ${className}`} data-reveal="image">
-      <Link href={`/projetos/${project.slug}`} className="zoom-media absolute inset-0 block">
-        <Image src={img.src} alt={img.alt} fill sizes={sizes} className="object-cover" />
-        <span aria-hidden className="absolute inset-0 bg-[linear-gradient(to_top,rgb(32_30_30/0.85),rgb(32_30_30/0.1)_55%,transparent)] transition-opacity duration-700 group-hover:opacity-90" />
-        <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 sm:p-8">
+    <article className="group">
+      <Link href={`/projetos/${project.slug}`} className="block">
+        <span data-reveal="image" className={`zoom-media relative block overflow-hidden bg-surface-alt ${className}`}>
+          <Image src={img.src} alt={img.alt} fill sizes={sizes} className="object-cover" />
+        </span>
+        <span className="mt-5 flex items-start justify-between gap-6">
           <span>
-            <H className="display text-[1.7rem] text-surface sm:text-[2rem]">{project.title}</H>
-            <span className="mt-2 block text-[0.95rem] text-surface/70">{project.rooms.slice(0, 3).join(", ")}</span>
+            <H className="display text-[1.6rem] text-ink sm:text-[1.9rem]">{project.title}</H>
+            <span className="mt-2 block max-w-[38ch] text-[0.95rem] leading-relaxed text-muted">{project.rooms.slice(0, 3).join(", ")}</span>
           </span>
-          <span aria-hidden className="grid size-12 shrink-0 translate-x-2 place-items-center rounded-full border border-surface/40 text-surface opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
-            <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
-              <path d="M5 12h14m-6-6 6 6-6 6" />
-            </svg>
-          </span>
+          <ArrowIcon
+            width={22}
+            height={22}
+            className="mt-2 shrink-0 text-muted transition-transform duration-500 group-hover:translate-x-1.5 group-hover:text-ink"
+          />
         </span>
       </Link>
     </article>

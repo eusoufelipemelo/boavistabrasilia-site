@@ -55,7 +55,7 @@ export default function ContactPage() {
               O formulário monta a mensagem e abre o WhatsApp no seu aparelho. Nenhum dado fica guardado neste site.
             </p>
             <div data-reveal="fade" className="mt-10">
-              <LeadForm whatsapp={c.whatsapp} regions={c.regions} />
+              <LeadForm whatsapp={c.whatsapp} regions={c.regions} tone="light" />
             </div>
           </div>
 

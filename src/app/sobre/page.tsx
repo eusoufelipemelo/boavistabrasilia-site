@@ -5,6 +5,7 @@ import { CtaBlock } from "@/components/CtaBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadSection } from "@/components/LeadSection";
 import { PageHeader } from "@/components/PageHeader";
+import { PartnersSection } from "@/components/PartnersSection";
 import { SplitTitle } from "@/components/SplitTitle";
 import { YouTubeFacade } from "@/components/VideoPlayer";
 import { absoluteUrl } from "@/lib/env";
@@ -52,16 +53,15 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-4 lg:col-start-9">
               <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden bg-surface-alt">
-                <Image src="/fotos/socias.jpg" alt="Duas das sócias da Boa Vista Brasília lado a lado em uma cozinha" fill sizes="(min-width: 1024px) 32vw, 92vw" className="object-cover" />
+                <Image
+                  src="/fotos/socios-sofa.jpg"
+                  alt="Os três sócios da Boa Vista Brasília sentados juntos diante de uma janela ampla"
+                  fill
+                  sizes="(min-width: 1024px) 32vw, 92vw"
+                  className="object-cover"
+                />
               </div>
-              <ul className="mt-8 border-t border-line">
-                {a.partners.map((p) => (
-                  <li key={p.name} data-reveal="fade" className="border-b border-line py-4">
-                    <p className="text-[1.1rem] font-medium tracking-[-0.02em] text-ink">{p.name}</p>
-                    <p className="text-[0.95rem] text-muted">{p.role}</p>
-                  </li>
-                ))}
-              </ul>
+              <p className="legenda mt-4">Giovanna, Maikel e Thais assumiram a loja de Brasília em janeiro de 2026.</p>
               <p className="mt-6 text-[0.95rem] text-muted">{siteConfig.group}.</p>
             </div>
           </div>
@@ -108,28 +108,8 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* responsável técnico */}
-      <section aria-labelledby="responsavel" className="bg-surface py-20 sm:py-28">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden bg-surface-alt lg:col-span-5">
-              <Image src={a.expert.image.src} alt={a.expert.image.alt} fill sizes="(min-width: 1024px) 40vw, 92vw" className="object-cover" />
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <SplitTitle id="responsavel" text="Quem responde pelos projetos" className="display text-[2rem] text-ink sm:text-[2.8rem]" />
-              <p data-reveal="fade" className="mt-7 max-w-[54ch] leading-relaxed text-muted">
-                {a.expert.bio}
-              </p>
-              <p data-reveal="fade" className="mt-8 text-[1.15rem] font-medium tracking-[-0.02em] text-ink">
-                {a.expert.name}
-              </p>
-              <p data-reveal="fade" className="text-[0.95rem] text-muted">
-                {a.expert.credentials}
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
+      {/* os três sócios, com o mesmo peso */}
+      <PartnersSection withLink={false} />
 
       {/* CASACOR + conversa com o arquiteto */}
       <section aria-labelledby="casacor" className="bg-ink py-20 text-surface sm:py-28">
@@ -168,12 +148,13 @@ export default function AboutPage() {
           description: siteConfig.description,
           about: { "@id": organizationId() },
           mainEntity: {
-            "@type": "Person",
-            name: a.expert.name,
-            jobTitle: a.expert.credentials,
-            description: a.expert.bio,
-            worksFor: { "@id": organizationId() },
-            image: absoluteUrl(a.expert.image.src),
+            "@type": "ItemList",
+            name: `Sócios da ${siteConfig.name}`,
+            itemListElement: a.partners.map((p, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: { "@type": "Person", name: p.name, jobTitle: p.role, description: p.does, worksFor: { "@id": organizationId() } },
+            })),
           },
         }}
       />

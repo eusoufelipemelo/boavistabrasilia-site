@@ -216,12 +216,29 @@ export const siteConfig = {
       "A loja existe há cinco anos na cidade. O que mudou com a nova administração foi o jeito de conduzir: setores internos definidos, processos escritos e alguém responsável por cada etapa, do primeiro atendimento à montagem.",
       "Entregar um móvel muito bem feito é obrigação, e para isso existe a fábrica: tecnologia, maquinário alemão e 10 anos de garantia. O que a Boa Vista Brasília faz de diferente é a forma de conduzir o caminho até lá — com acompanhamento próximo, prazo combinado e nenhuma etapa que você descubra sozinho.",
     ],
-    /** Sócios (briefing). Sem legenda individual em foto: os nomes aparecem no texto. */
+    /**
+     * Sócios (briefing). Os retratos aparecem sem nome: o cliente ainda não confirmou
+     * quem é quem nas fotos. Quando confirmar, é só ligar cada nome ao seu retrato.
+     */
     partners: [
-      { name: "Giovanna", role: "Sócia-proprietária, diretora administrativa" },
-      { name: "Maikel", role: "Sócio-proprietário, diretor de projetos" },
-      { name: "Thais", role: "Sócia-proprietária, diretora comercial" },
+      {
+        name: "Giovanna",
+        role: "Sócia-proprietária, diretora administrativa",
+        does: "Responde pela operação interna: contratos, pedidos de fábrica e o combinado de cada entrega.",
+      },
+      {
+        name: "Maikel",
+        role: "Sócio-proprietário, diretor de projetos",
+        does: "Conduz o detalhamento técnico da marcenaria e a conversa com os arquitetos que trazem seus projetos.",
+      },
+      {
+        name: "Thais",
+        role: "Sócia-proprietária, diretora comercial",
+        does: "Cuida do atendimento, do primeiro contato à apresentação do projeto na loja.",
+      },
     ],
+    /** Retratos dos sócios, no mesmo enquadramento (sem legenda individual). */
+    portraits: ["/fotos/socia-1.jpg", "/fotos/socio-1.jpg", "/fotos/socia-2.jpg"],
     /** Quem responde tecnicamente pelos projetos (E-E-A-T). */
     expert: {
       name: "Maikel",
