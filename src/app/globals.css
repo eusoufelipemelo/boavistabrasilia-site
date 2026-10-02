@@ -459,6 +459,16 @@
     }
   }
 
+  /* Topo com direção de arte: cada tamanho de tela tem o seu ponto de recorte. */
+  [data-art-directed] {
+    --pos-active: var(--pos-mobile, 50% 50%);
+  }
+  @media (min-width: 1024px) {
+    [data-art-directed] {
+      --pos-active: var(--pos, 50% 50%);
+    }
+  }
+
   /* Foto que aproxima devagar no hover (cards de ambiente e galeria) */
   .zoom-media img {
     transition:

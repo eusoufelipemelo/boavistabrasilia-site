@@ -39,8 +39,15 @@ export default function ContactPage() {
       <PageHeader
         title="Vamos conversar sobre o seu ambiente"
         intro={intro}
-        image={{ src: "/fotos/vista-brasilia.jpg", alt: "Sócio da Boa Vista Brasília sentado à mesa, com o horizonte de Brasília ao fundo" }}
+        image={{
+          src: "/fotos/vista-brasilia.jpg",
+          alt: "Sócio da Boa Vista Brasília sentado à mesa, com o horizonte de Brasília ao fundo",
+          width: 2400,
+          height: 1350,
+        }}
+        mobile={{ src: "/fotos/vista-brasilia-mobile.jpg", width: 1050, height: 1400 }}
         position="50% 55%"
+        mobilePosition="50% 45%"
         crumbs={[
           { name: "Início", path: "/" },
           { name: "Contato", path: "/contato" },

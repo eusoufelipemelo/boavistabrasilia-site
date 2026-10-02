@@ -35,8 +35,15 @@ export default function AboutPage() {
           { name: "Início", path: "/" },
           { name: "Sobre", path: "/sobre" },
         ]}
-        image={{ src: "/fotos/socios-sofa.jpg", alt: "Os três sócios da Boa Vista Brasília sentados juntos diante de uma janela ampla" }}
-        position="50% 35%"
+        image={{
+          src: "/fotos/socios-topo.jpg",
+          alt: "Os três sócios da Boa Vista Brasília juntos no sofá, diante da janela com vista para a cidade",
+          width: 2560,
+          height: 1097,
+        }}
+        mobile={{ src: "/fotos/socios-topo-mobile.jpg", width: 1050, height: 1400 }}
+        position="50% 42%"
+        mobilePosition="50% 40%"
       />
 
       {/* história */}
