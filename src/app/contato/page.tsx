@@ -12,7 +12,7 @@ import { organizationId } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/site.config";
 
-const intro = "Conte qual ambiente você quer resolver e em que região de Brasília ele fica. O atendimento continua pelo WhatsApp, no seu tempo.";
+const intro = "Conte qual ambiente você quer resolver e de onde você fala com a gente. O atendimento continua pelo WhatsApp, no seu tempo.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contato",
@@ -55,7 +55,7 @@ export default function ContactPage() {
               O formulário monta a mensagem e abre o WhatsApp no seu aparelho. Nenhum dado fica guardado neste site.
             </p>
             <div data-reveal="fade" className="mt-10">
-              <LeadForm whatsapp={c.whatsapp} regions={c.regions} tone="light" />
+              <LeadForm whatsapp={c.whatsapp} regions={c.formRegions} tone="light" />
             </div>
           </div>
 
@@ -143,10 +143,11 @@ export default function ContactPage() {
         <Container>
           <SplitTitle id="regioes" text="Onde atendemos" className="display text-[2.3rem] text-ink sm:text-[3.2rem]" />
           <p data-reveal="fade" className="mt-5 max-w-xl leading-relaxed text-muted">
-            {c.areaServed}. Escolha a sua região no mapa para começar a conversa já dizendo onde você mora.
+            Atendemos clientes em todo o Brasil, com lojas em Brasília (DF) e em Luís Eduardo Magalhães (BA). Escolha a loja mais perto para começar a
+            conversa.
           </p>
           <div className="mt-12">
-            <ServiceAreaMap regions={c.regionPoints} whatsapp={c.whatsapp} />
+            <ServiceAreaMap stores={c.stores} whatsapp={c.whatsapp} regions={c.regions} />
           </div>
         </Container>
       </section>

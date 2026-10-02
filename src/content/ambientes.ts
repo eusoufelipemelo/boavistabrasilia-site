@@ -1,13 +1,12 @@
 /**
  * Ambientes que a Boa Vista Brasília projeta.
  *
- * IMPORTANTE: as fotos de ambiente ainda são de banco de imagens (Unsplash), usadas como
- * referência do tipo de solução até o cliente enviar as fotos dos projetos executados.
- * Toda foto ilustrativa tem `stock: true` e o site avisa isso na tela.
- * As fotos reais do cliente (fábrica, loja, sócios, CASACOR) ficam em /public/fotos.
+ * Todas as fotos são de projetos executados com móveis Boa Vista, enviadas pela loja
+ * (pasta "3 - Fotos/Fotos Ambientes"). As fotos reais da loja, da fábrica, dos sócios
+ * e da CASACOR ficam em /public/fotos.
  */
 
-export type ProjectImage = { src: string; width: number; height: number; alt: string; stock?: boolean };
+export type ProjectImage = { src: string; width: number; height: number; alt: string };
 
 export type Project = {
   slug: string;
@@ -28,10 +27,8 @@ export type Project = {
   images: ProjectImage[];
 };
 
-const L = { width: 2000, height: 1333 };
-
-function img(src: string, alt: string, size = L): ProjectImage {
-  return { src, ...size, alt, stock: true };
+function img(src: string, alt: string, size: { width: number; height: number }): ProjectImage {
+  return { src, ...size, alt };
 }
 
 export const projects: Project[] = [
@@ -41,19 +38,22 @@ export const projects: Project[] = [
     kind: "Cozinha",
     place: "Casas e apartamentos",
     cover: 1,
-    hero: 1,
+    hero: 5,
     summary:
       "A cozinha é o ambiente que mais exige do projeto: cada gaveta tem uma função, cada medida depende do eletrodoméstico e nada pode sobrar. O desenho começa pelo que você cozinha e por quantas pessoas ficam ali ao mesmo tempo.",
-    rooms: ["Armários até o teto", "Gavetas com divisórias", "Torre quente", "Iluminação embutida"],
+    rooms: ["Armários até o teto", "Gavetas com divisórias", "Torre quente", "Adega e iluminação embutida"],
     details: [
       { title: "Divisão interna pensada antes", text: "Faqueiro, porta-temperos, lixeira embutida e altura de gaveta definida pelo que você guarda — não pelo que cabe." },
       { title: "Medidas conferidas na obra", text: "A medição acontece depois do revestimento, com os eletrodomésticos definidos. É o que evita o vão de dois centímetros no dia da montagem." },
       { title: "Acabamento que aguenta o uso", text: "Portas, puxadores e ferragens escolhidos para a rotina da casa, com a possibilidade de trocar frentes no futuro sem refazer o móvel." },
     ],
     images: [
-      img("/ambientes/cozinha-1.jpg", "Cozinha planejada escura com iluminação embutida sob os armários superiores", { width: 1600, height: 2000 }),
-      img("/ambientes/cozinha-2.jpg", "Cozinha com ilha central, bancada de pedra e marcenaria amadeirada até o teto", { width: 2000, height: 1208 }),
-      img("/ambientes/cozinha-3.jpg", "Cozinha preta com torre de fornos embutida e pendentes sobre a bancada", { width: 1600, height: 2000 }),
+      img("/ambientes/cozinha-1.jpg", "Cozinha integrada com adega climatizada, nichos iluminados e divisória de vidro", { width: 2000, height: 1364 }),
+      img("/ambientes/cozinha-2.jpg", "Cozinha em tons escuros com painel de madeira e iluminação sob os armários", { width: 1333, height: 2000 }),
+      img("/ambientes/cozinha-3.jpg", "Nicho de madeira iluminado com adega, taças e objetos de decoração", { width: 2000, height: 1333 }),
+      img("/ambientes/cozinha-4.jpg", "Cozinha clara com armários até o teto, torneira dourada e bancada de pedra", { width: 1333, height: 2000 }),
+      img("/ambientes/cozinha-5.jpg", "Cozinha com bancada de mármore, ripado de madeira e banquetas de palha", { width: 2000, height: 1333 }),
+      img("/ambientes/cozinha-6.jpg", "Gaveta aberta com divisórias de madeira e talheres organizados", { width: 1333, height: 2000 }),
     ],
   },
   {
@@ -72,9 +72,12 @@ export const projects: Project[] = [
       { title: "Luz onde a roupa fica", text: "Perfil de LED nos cabideiros e nas prateleiras, com sensor de porta quando faz sentido." },
     ],
     images: [
-      img("/ambientes/closet-1.jpg", "Closet com portas de vidro escuro, cabideiros iluminados e piso de madeira", { width: 1333, height: 2000 }),
-      img("/ambientes/closet-2.jpg", "Closet claro com cabideiro suspenso, banco central e prateleiras de madeira", { width: 1667, height: 2000 }),
-      img("/ambientes/closet-3.jpg", "Quarto com closet aberto integrado, cabideiros e penteadeira", { width: 1600, height: 2000 }),
+      img("/ambientes/closet-1.jpg", "Closet amadeirado com cabideiros iluminados, gaveteiro e nichos para sapatos", { width: 1333, height: 2000 }),
+      img("/ambientes/closet-2.jpg", "Closet com portas de vidro, espelho iluminado e penteadeira", { width: 2000, height: 1333 }),
+      img("/ambientes/closet-3.jpg", "Closet claro com gaveteiro central, cabideiros e iluminação embutida", { width: 1333, height: 2000 }),
+      img("/ambientes/closet-4.jpg", "Closet aberto em tom claro com prateleiras, gavetas e sapateira inclinada", { width: 1333, height: 2000 }),
+      img("/ambientes/closet-5.jpg", "Closet junto à janela com cabideiro iluminado e bancada de apoio", { width: 1333, height: 2000 }),
+      img("/ambientes/closet-6.jpg", "Cabideiro de madeira escura com iluminação em perfil e gavetas internas", { width: 1333, height: 2000 }),
     ],
   },
   {
@@ -85,17 +88,20 @@ export const projects: Project[] = [
     cover: 1,
     hero: 1,
     summary:
-      "No dormitório a marcenaria precisa desaparecer. Guarda-roupa, cabeceira, criado e painel de televisão entram como uma peça só, no mesmo acabamento, para o quarto continuar sendo um quarto.",
-    rooms: ["Guarda-roupa até o teto", "Cabeceira planejada", "Painel de TV", "Criados suspensos"],
+      "No dormitório a marcenaria precisa desaparecer. Guarda-roupa, cabeceira, criado e painel de televisão entram como uma peça só, no mesmo acabamento, para o quarto continuar sendo um quarto. Nos quartos de criança, o projeto é feito para durar além da fase.",
+    rooms: ["Guarda-roupa até o teto", "Cabeceira planejada", "Painel de TV", "Criados e penteadeira"],
     details: [
       { title: "Uma peça, não quatro móveis", text: "Cabeceira, criados e painel desenhados juntos, com as mesmas linhas e o mesmo acabamento." },
       { title: "Aproveitamento do pé-direito", text: "Armário até o teto, com portas de abrir ou correr conforme o espaço de circulação da cama." },
       { title: "Quarto de criança que cresce", text: "Divisões internas reguláveis e frentes que podem ser trocadas quando a fase muda." },
     ],
     images: [
-      img("/ambientes/dormitorio-1.jpg", "Dormitório com cabeceira de madeira, criados suspensos e armário amadeirado", { width: 2000, height: 1125 }),
-      img("/ambientes/dormitorio-2.jpg", "Quarto de casal com guarda-roupa claro, lustre e cama ampla", { width: 2000, height: 1862 }),
-      img("/ambientes/dormitorio-3.jpg", "Quarto escuro com painel de madeira, nichos iluminados e cama baixa", { width: 1600, height: 2000 }),
+      img("/ambientes/dormitorio-1.jpg", "Quarto de casal com painel laranja, cabeceira estofada e bancada ao lado da cama", { width: 2000, height: 1333 }),
+      img("/ambientes/dormitorio-2.jpg", "Suíte com cabeceira de madeira, criados suspensos e armário com portas espelhadas", { width: 2000, height: 1333 }),
+      img("/ambientes/dormitorio-3.jpg", "Quarto compacto com divisória vazada, bancada de estudos e armário cinza", { width: 1333, height: 2000 }),
+      img("/ambientes/dormitorio-4.jpg", "Quarto infantil com cabeceira arredondada em tom rosa e cortina até o teto", { width: 2000, height: 1333 }),
+      img("/ambientes/dormitorio-5.jpg", "Quarto infantil com cabeceira vazada iluminada e marcenaria em tom claro", { width: 2000, height: 1333 }),
+      img("/ambientes/dormitorio-6.jpg", "Quarto infantil com penteadeira iluminada, gaveteiro rosé e painel ripado", { width: 2000, height: 1333 }),
     ],
   },
   {
@@ -114,9 +120,12 @@ export const projects: Project[] = [
       { title: "Estante que sustenta", text: "Prateleiras dimensionadas para o peso dos livros, sem a barriga que aparece seis meses depois." },
     ],
     images: [
-      img("/ambientes/home-office-1.jpg", "Estante de madeira iluminada com nichos abertos, livros e objetos", { width: 1333, height: 2000 }),
-      img("/ambientes/home-office-2.jpg", "Home office com estante de madeira do chão ao teto, bancada e poltrona junto à janela", { width: 2000, height: 1333 }),
-      img("/ambientes/home-office-3.jpg", "Home office compacto com bancada e nichos iluminados em madeira clara", { width: 1393, height: 2000 }),
+      img("/ambientes/home-office-1.jpg", "Home office com bancada de madeira em L, prateleiras iluminadas e painel de TV", { width: 2000, height: 1333 }),
+      img("/ambientes/home-office-2.jpg", "Escritório com armário de madeira do piso ao teto, bancada e estante integrada", { width: 2000, height: 1333 }),
+      img("/ambientes/home-office-3.jpg", "Home office claro com mesa redonda, armários curvos e iluminação embutida", { width: 2000, height: 1333 }),
+      img("/ambientes/home-office-4.jpg", "Estante metálica iluminada no showroom da Boa Vista, com poltrona de leitura", { width: 1333, height: 2000 }),
+      img("/ambientes/home-office-5.jpg", "Sala de reunião com mesa comprida, painel de madeira e nichos iluminados", { width: 2000, height: 1333 }),
+      img("/ambientes/home-office-6.jpg", "Escritório amadeirado com escrivaninha, cadeiras e painel ripado", { width: 1333, height: 2000 }),
     ],
   },
   {
@@ -135,9 +144,12 @@ export const projects: Project[] = [
       { title: "Integração com a sala de jantar", text: "Buffet, adega e aparador no mesmo desenho do painel, ligando os dois ambientes." },
     ],
     images: [
-      img("/ambientes/sala-1.jpg", "Sala de jantar com marcenaria escura, bancada de pedra e mesa para seis lugares", { width: 2000, height: 1627 }),
-      img("/ambientes/sala-2.jpg", "Sala de estar com painel ripado e marcenaria em torno da televisão", { width: 2000, height: 1600 }),
-      img("/ambientes/sala-3.jpg", "Sala com estante de madeira escura, livros e poltrona de leitura", { width: 1501, height: 2000 }),
+      img("/ambientes/sala-1.jpg", "Sala de estar com painel de mármore e ripado de madeira, rack suspenso e iluminação embutida", { width: 2000, height: 1333 }),
+      img("/ambientes/sala-2.jpg", "Sala clara e ampla com painel de TV, sofá curvo e marcenaria branca", { width: 2000, height: 1318 }),
+      img("/ambientes/sala-3.jpg", "Sala de estar com painel de madeira, rack suspenso e poltrona azul", { width: 2000, height: 1333 }),
+      img("/ambientes/sala-4.jpg", "Home theater com painel ripado iluminado, lareira ecológica e poltrona", { width: 1333, height: 2000 }),
+      img("/ambientes/sala-5.jpg", "Estante clara com nichos, aparador e objetos de decoração na sala de jantar", { width: 2000, height: 1388 }),
+      img("/ambientes/sala-6.jpg", "Painel escuro com nichos de madeira iluminados e plantas na sala de estar", { width: 1333, height: 2000 }),
     ],
   },
   {
@@ -156,9 +168,11 @@ export const projects: Project[] = [
       { title: "Luz que serve para se arrumar", text: "Iluminação na espelheira pensada para o rosto, não só para o ambiente." },
     ],
     images: [
-      img("/ambientes/banheiro-1.jpg", "Banheiro com bancada de mármore escuro, gabinete de madeira e espelho oval iluminado", { width: 2000, height: 2000 }),
-      img("/ambientes/banheiro-2.jpg", "Banheiro com revestimento de mármore escuro, box de vidro e banheira", { width: 1333, height: 2000 }),
-      img("/ambientes/banheiro-3.jpg", "Lavabo com parede de mármore claro, bancada suspensa e espelho redondo", { width: 2000, height: 2000 }),
+      img("/ambientes/banheiro-1.jpg", "Lavabo revestido de madeira com bancada de pedra, cuba esculpida e espelho orgânico", { width: 1333, height: 2000 }),
+      img("/ambientes/banheiro-2.jpg", "Banheiro com gabinete suspenso amadeirado, bancada ampla e espelheira iluminada", { width: 1333, height: 2000 }),
+      img("/ambientes/banheiro-3.jpg", "Lavabo com parede de terrazzo, gabinete claro e espelho de borda arredondada", { width: 1333, height: 2000 }),
+      img("/ambientes/banheiro-4.jpg", "Lavabo com papel de parede estampado, bancada iluminada e gabinete amadeirado", { width: 1333, height: 2000 }),
+      img("/ambientes/banheiro-5.jpg", "Gabinete de banheiro em tom amadeirado com bancada de apoio e espelho", { width: 1333, height: 2000 }),
     ],
   },
 ];
@@ -168,10 +182,15 @@ export type GalleryCategory = (typeof galleryCategories)[number];
 
 export type GalleryItem = ProjectImage & { category: string; project: { slug: string; title: string } };
 
-/** Todas as fotos dos ambientes, na ordem em que aparecem na galeria da Home. */
-export const galleryItems: GalleryItem[] = projects.flatMap((p) =>
-  p.images.map((image) => ({ ...image, category: p.kind, project: { slug: p.slug, title: p.title } })),
-);
+/** Todas as fotos dos ambientes, intercaladas por categoria para a galeria não ficar em blocos. */
+export const galleryItems: GalleryItem[] = (() => {
+  const lists = projects.map((p) => p.images.map((image) => ({ ...image, category: p.kind, project: { slug: p.slug, title: p.title } })));
+  const out: GalleryItem[] = [];
+  for (let i = 0; i < Math.max(...lists.map((l) => l.length)); i++) {
+    for (const list of lists) if (list[i]) out.push(list[i]);
+  }
+  return out;
+})();
 
 export function projectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);

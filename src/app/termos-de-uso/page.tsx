@@ -33,10 +33,9 @@ export default function TermsPage() {
 
       <h2>4. Fotos, marca e propriedade intelectual</h2>
       <p>
-        As fotos da loja, da equipe e dos móveis são da Boa Vista Brasília. As fotos das páginas de ambientes são ilustrativas, de banco de imagens, e
-        estão identificadas como tal: servem para mostrar o tipo de solução, não um projeto entregue pela loja. A marca, o logotipo, os textos e o
-        desenho do site são protegidos por lei e não podem ser copiados, reproduzidos ou usados comercialmente sem autorização por escrito. Você pode
-        compartilhar links para as páginas.
+        As fotos da loja, da equipe, dos ambientes e dos móveis são da Boa Vista Brasília e mostram projetos executados com móveis da marca. A marca, o
+        logotipo, as fotos, os textos e o desenho do site são protegidos por lei e não podem ser copiados, reproduzidos ou usados comercialmente sem
+        autorização por escrito. Você pode compartilhar links para as páginas.
       </p>
 
       <h2>5. Uso adequado</h2>

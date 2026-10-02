@@ -26,7 +26,7 @@ export function LeadSection({ id = "solicite" }: { id?: string }) {
               Você preenche, o site monta a mensagem e abre o WhatsApp {c.phone} com tudo escrito. Nenhum dado fica guardado aqui.
             </p>
             <div data-reveal="fade" className="mt-10">
-              <LeadForm whatsapp={c.whatsapp} regions={c.regions} tone="dark" />
+              <LeadForm whatsapp={c.whatsapp} regions={c.formRegions} tone="dark" />
             </div>
           </div>
 

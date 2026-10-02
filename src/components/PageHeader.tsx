@@ -5,7 +5,10 @@ import { Container } from "./Container";
 import { SplitTitle } from "./SplitTitle";
 
 /** Foto padrão do topo das páginas internas (ex.: blog). */
-const DEFAULT_IMAGE = { src: "/fotos/armario-superior.jpg", alt: "Detalhe de armário superior de madeira sendo aberto na loja da Boa Vista Brasília" };
+const DEFAULT_IMAGE = {
+  src: "/fotos/topo-blog.jpg",
+  alt: "Sala ampla com marcenaria clara, divisória vazada de madeira e cozinha integrada ao fundo",
+};
 
 /**
  * Topo das páginas internas: foto real de projeto em tela cheia, trilha, h1 animado e texto de apoio.

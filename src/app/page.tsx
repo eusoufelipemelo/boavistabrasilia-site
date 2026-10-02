@@ -10,13 +10,14 @@ import { ArrowIcon, CheckIcon, WhatsAppIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadSection } from "@/components/LeadSection";
 import { PostCard } from "@/components/PostCard";
+import { AmbienceStrip } from "@/components/AmbienceStrip";
 import { PartnersSection } from "@/components/PartnersSection";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { ProjectTile } from "@/components/ProjectTile";
 import { ServiceAreaMap } from "@/components/ServiceAreaMap";
 import { SplitTitle } from "@/components/SplitTitle";
 import { VideoPlayer } from "@/components/VideoPlayer";
-import { galleryCategories, galleryItems, projects } from "@/content/ambientes";
+import { galleryCategories, galleryItems, projectBySlug, projects } from "@/content/ambientes";
 import { absoluteUrl } from "@/lib/env";
 import { whatsappUrl } from "@/lib/format";
 import { getPosts } from "@/lib/outbox";
@@ -160,7 +161,7 @@ export default async function HomePage() {
             <div className="lg:col-span-5 lg:col-start-8">
               <VideoPlayer
                 {...siteConfig.videos.casacor}
-                caption="CASACOR Brasília 2026: a cozinha assinada pela Boa Vista Brasília no espaço do arquiteto Jorge Zardo."
+                caption="Espaço Deca na CASACOR Brasília 2026, no projeto do arquiteto Jorge Zardo, com execução da Boa Vista Brasília."
                 className="max-w-[420px] lg:ml-auto"
               />
             </div>
@@ -232,7 +233,7 @@ export default async function HomePage() {
             id="galeria"
             dark
             title="Galeria"
-            text="Soluções de marcenaria por ambiente. Toque em uma foto para ver de perto. As fotos de ambiente são de referência, até as dos projetos entregues chegarem."
+            text="Ambientes executados com móveis Boa Vista, de cozinha a lavabo. Toque em uma foto para ver de perto."
           />
           <div className="mt-12">
             <Gallery items={galleryItems} categories={galleryCategories} />
@@ -255,16 +256,29 @@ export default async function HomePage() {
         </Container>
       </section>
 
+      {/* respiro: marcenaria entre dois blocos de leitura */}
+      <section aria-label="Ambientes executados pela Boa Vista Brasília" className="bg-surface-alt pb-20 sm:pb-28">
+        <Container>
+          <AmbienceStrip
+            images={[
+              projectBySlug("closet")!.images[2],
+              projectBySlug("sala-e-home-theater")!.images[3],
+              projectBySlug("cozinha")!.images[2],
+            ]}
+          />
+        </Container>
+      </section>
+
       {/* ----------------------------------------------------------- onde atende */}
       <section aria-labelledby="regioes" className="bg-surface py-20 sm:py-28">
         <Container>
           <SectionHead
             id="regioes"
             title="Onde atendemos"
-            text={`Atendemos ${c.areaServed}. A loja fica no ${c.address.street}, e a medição acontece no seu endereço.`}
+            text="Atendemos clientes em todo o Brasil. São duas lojas: a de Brasília, no SIA, e a de Luís Eduardo Magalhães, na Bahia. O projeto começa pelo WhatsApp, de onde você estiver."
           />
           <div className="mt-14">
-            <ServiceAreaMap regions={c.regionPoints} whatsapp={c.whatsapp} />
+            <ServiceAreaMap stores={c.stores} whatsapp={c.whatsapp} regions={c.regions} />
           </div>
         </Container>
       </section>

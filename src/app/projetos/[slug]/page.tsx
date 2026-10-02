@@ -114,10 +114,10 @@ export default async function ProjectPage({ params }: PageProps<"/projetos/[slug
         </Container>
       </section>
 
-      <section aria-label={`Fotos de referência: ${project.title}`} className="bg-surface">
+      <section aria-label={`Fotos de ${project.title.toLowerCase()}`} className="bg-surface">
         <Container>
           <ProjectGallery images={project.images} />
-          <p className="legenda mt-8 max-w-[60ch]">Fotos ilustrativas, de banco de imagens, usadas como referência do tipo de solução.</p>
+          <p className="legenda mt-8 max-w-[64ch]">Ambientes executados com móveis planejados Boa Vista.</p>
         </Container>
       </section>
 

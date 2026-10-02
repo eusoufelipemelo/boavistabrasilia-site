@@ -43,7 +43,7 @@ export const siteConfig = {
   group: "Uma empresa do Grupo D'Kaza",
   /** Descrição padrão das páginas (150–160 caracteres). */
   description:
-    "Móveis planejados de alto padrão em Brasília. A Boa Vista Brasília acompanha do projeto à montagem, com 10 anos de garantia e móveis 100% editáveis.",
+    "Móveis planejados de alto padrão em Brasília. A Boa Vista Brasília acompanha do projeto à montagem, com 10 anos de garantia e produto 100% editável.",
   /** Domínio de produção, sem barra no fim. A variável SITE_URL tem prioridade. */
   url: "https://www.boavistabrasilia.com.br",
   locale: "pt_BR",
@@ -86,19 +86,25 @@ export const siteConfig = {
     hours: "Segunda a sexta, das 9h às 19h. Sábado, das 9h às 12h.",
     hoursNote: "Fora desses horários, o atendimento é feito com agendamento.",
     openingHoursSpec: ["Mo-Fr 09:00-19:00", "Sa 09:00-12:00"] as string[],
-    areaServed: "Brasília e entorno (DF)",
-    /** Regiões de atendimento (a confirmar com o cliente). */
+    areaServed: "Todo o Brasil, com lojas em Brasília (DF) e Luís Eduardo Magalhães (BA)",
+    /** Regiões de Brasília com atendimento mais frequente (a confirmar com o cliente). */
     regions: ["Lago Sul", "Lago Norte", "Park Way", "Sudoeste", "Noroeste", "Asa Sul", "Asa Norte", "Jardim Botânico"],
-    /** Centro aproximado de cada região, para o mapa de "Onde atendemos". */
-    regionPoints: [
-      { name: "Lago Sul", lat: -15.8385, lng: -47.8618 },
-      { name: "Lago Norte", lat: -15.7355, lng: -47.8585 },
-      { name: "Park Way", lat: -15.8926, lng: -47.9494 },
-      { name: "Sudoeste", lat: -15.7975, lng: -47.9255 },
-      { name: "Noroeste", lat: -15.7391, lng: -47.9149 },
-      { name: "Asa Sul", lat: -15.8163, lng: -47.9053 },
-      { name: "Asa Norte", lat: -15.7631, lng: -47.8828 },
-      { name: "Jardim Botânico", lat: -15.8757, lng: -47.8065 },
+    /** Opções de origem no formulário: as regiões acima mais o resto do país. */
+    formRegions: ["Brasília (DF)", "Entorno do DF", "Goiás", "Bahia", "Outro estado"],
+    /** Lojas no mapa de "Onde atendemos". O endereço da loja da Bahia ainda não foi informado. */
+    stores: [
+      {
+        name: "Brasília (DF)",
+        address: "SIA Trecho 2, Lote 2005 a 2015, Sala 101A",
+        lat: -15.8012,
+        lng: -47.9566,
+      },
+      {
+        name: "Luís Eduardo Magalhães (BA)",
+        address: "",
+        lat: -12.0944,
+        lng: -45.7975,
+      },
     ],
   },
 
@@ -116,8 +122,8 @@ export const siteConfig = {
     detalhes: {
       src: "/video/casacor-2.mp4",
       poster: "/video/casacor-2.jpg",
-      title: "Os detalhes por dentro dos móveis",
-      alt: "Gavetas com divisórias de madeira, porta-temperos e adega, abertas uma a uma",
+      title: "Gaveta com sistema de amortecimento",
+      alt: "Gavetas com divisórias de madeira e sistema de amortecimento, abertas uma a uma",
     },
     conversa: {
       youtubeId: "-EXsQbmtZv4",
@@ -133,7 +139,7 @@ export const siteConfig = {
       title: "Projeto e móveis planejados",
       scope: "Para quem vai morar no espaço",
       description:
-        "Você conta como vive, a gente desenha o móvel para essa rotina e acompanha até a montagem. O projeto é 100% editável: muda enquanto a sua ideia muda, antes de ir para a fábrica.",
+        "Você conta como vive, a gente desenha o móvel para essa rotina e acompanha até a montagem. O produto é 100% editável: muda enquanto a sua ideia muda, antes de ir para a fábrica.",
       forWhom: "Para quem está montando ou reformando a casa e quer resolver um ambiente ou a casa inteira.",
       includes: ["Medição e projeto do ambiente", "Escolha de acabamentos, ferragens e iluminação", "Produção, entrega e montagem"],
       image: { src: "/ambientes/cozinha-1.jpg", alt: "Cozinha planejada em tons escuros com iluminação embutida sob os armários" },
@@ -181,7 +187,7 @@ export const siteConfig = {
     },
     {
       title: "Ajustes",
-      text: "O projeto é 100% editável. Muda a medida, o acabamento, a divisão interna — quantas vezes for preciso, até ficar do seu jeito.",
+      text: "O produto é 100% editável. Muda a medida, o acabamento, a divisão interna — quantas vezes for preciso, até ficar do seu jeito.",
       image: { src: "/fotos/faqueiro.jpg", alt: "Gaveta aberta com divisórias de madeira e talheres organizados" },
     },
     {
@@ -204,7 +210,7 @@ export const siteConfig = {
   /** Diferenciais confirmados no briefing. Nada além disso. */
   facts: [
     { value: "10 anos", label: "de garantia de fábrica nos móveis" },
-    { value: "100% editável", label: "o projeto muda até você aprovar" },
+    { value: "100% editável", label: "o produto muda até você aprovar" },
     { value: "Maquinário alemão", label: "corte e usinagem com precisão de indústria" },
   ],
 
@@ -213,8 +219,10 @@ export const siteConfig = {
     headline: "Três sócios, uma loja e um jeito de fazer",
     paragraphs: [
       "A Boa Vista Brasília nasceu de um encontro. Giovanna já era lojista Boa Vista em Posse, em Goiás, e convidou Maikel para trabalhar com ela. Quando a fábrica ofereceu a loja de Brasília, os dois chamaram Thais, e os três assumiram a operação em janeiro de 2026.",
+      "Mas a história de Maikel e Thais com a Boa Vista começou muito antes. Há quase uma década, os dois iniciaram a trajetória dentro da fábrica, no Rio Grande do Sul, conhecendo de perto os processos, a produção e toda a estrutura por trás da marca. Essa experiência trouxe o que consideramos um grande diferencial: conhecimento e propriedade para falar sobre aquilo que oferecemos. Conhecemos o produto desde a origem e, por isso, temos segurança para orientar clientes e parceiros e buscar, em cada projeto, a solução mais adequada.",
       "A loja existe há cinco anos na cidade. O que mudou com a nova administração foi o jeito de conduzir: setores internos definidos, processos escritos e alguém responsável por cada etapa, do primeiro atendimento à montagem.",
-      "Entregar um móvel muito bem feito é obrigação, e para isso existe a fábrica: tecnologia, maquinário alemão e 10 anos de garantia. O que a Boa Vista Brasília faz de diferente é a forma de conduzir o caminho até lá — com acompanhamento próximo, prazo combinado e nenhuma etapa que você descubra sozinho.",
+      "Entregar um móvel muito bem feito é obrigação, e para isso existe a fábrica: tecnologia, maquinário alemão e 10 anos de garantia. O que a Boa Vista Brasília faz de diferente é a forma de conduzir o caminho até lá: com conhecimento, acompanhamento próximo, prazo combinado e nenhuma etapa que o cliente precise descobrir sozinho.",
+      "É essa combinação entre a experiência de quem conhece a marca por dentro e uma gestão estruturada que nos permite entregar não apenas um produto, mas uma experiência mais segura, cuidadosa e completa para clientes e parceiros.",
     ],
     /**
      * Sócios (briefing). Os retratos aparecem sem nome: o cliente ainda não confirmou
@@ -224,12 +232,12 @@ export const siteConfig = {
       {
         name: "Giovanna",
         role: "Sócia-proprietária, diretora administrativa",
-        does: "Responde pela operação interna: contratos, pedidos de fábrica e o combinado de cada entrega.",
+        does: "Responde pelo administrativo e pelo financeiro: contratos, pedidos de fábrica, pagamentos e a organização interna da loja.",
       },
       {
         name: "Maikel",
         role: "Sócio-proprietário, diretor de projetos",
-        does: "Conduz o detalhamento técnico da marcenaria e a conversa com os arquitetos que trazem seus projetos.",
+        does: "Responde pelo projeto técnico, pelo acompanhamento da montagem e pela finalização de cada entrega.",
       },
       {
         name: "Thais",
@@ -258,7 +266,7 @@ export const siteConfig = {
     secondaryCta: "Ver ambientes",
     manifestoTitle: "Um bom móvel é o mínimo",
     manifestoText: [
-      "A indústria resolve o produto. Maquinário alemão, projeto 100% editável, 10 anos de garantia: isso é dever de casa, e é por isso que escolhemos a fábrica Boa Vista.",
+      "A indústria resolve o produto. Maquinário alemão, produto 100% editável, 10 anos de garantia: isso é dever de casa, e é por isso que escolhemos a fábrica Boa Vista.",
       "O que decide a sua experiência é o que acontece entre o primeiro atendimento e a última gaveta montada. É aí que colocamos gente, processo e tempo — para que a entrega seja tranquila, no prazo, e você não precise correr atrás de ninguém.",
     ],
   },
@@ -272,7 +280,7 @@ export const siteConfig = {
   /** Chamada para ação no fim dos artigos e das páginas. */
   cta: {
     title: "Vamos desenhar o seu ambiente?",
-    text: "Conte qual ambiente você quer resolver e em que região de Brasília fica. A conversa começa pelo WhatsApp, no seu tempo.",
+    text: "Conte qual ambiente você quer resolver e de onde você fala com a gente. A conversa começa pelo WhatsApp, no seu tempo.",
     button: "Conversar no WhatsApp",
   },
 
@@ -283,8 +291,8 @@ export const siteConfig = {
       a: "Sim. Os móveis têm 10 anos de garantia de fábrica. Depois da montagem, o mesmo time que atendeu você continua sendo o canal para ajustes e dúvidas.",
     },
     {
-      q: "O que significa o projeto ser 100% editável?",
-      a: "Significa que o desenho muda enquanto a sua ideia muda: medida, acabamento, ferragem, divisão interna. Os ajustes são feitos no projeto, antes de a peça ir para a produção.",
+      q: "O que significa o produto ser 100% editável?",
+      a: "Significa que o móvel é desenhado peça a peça para o seu espaço: medida, acabamento, ferragem e divisão interna mudam enquanto a sua ideia muda, antes de a produção começar.",
     },
     {
       q: "Vocês executam o projeto do meu arquiteto?",
@@ -295,12 +303,16 @@ export const siteConfig = {
       a: "Cozinha, dormitório, closet, home office, sala e home theater, banheiro e lavabo, área gourmet, lavanderia e ambientes comerciais. Se o seu ambiente não está nessa lista, pergunte pelo WhatsApp.",
     },
     {
+      q: "Vocês atendem fora de Brasília?",
+      a: "Sim. Além da loja de Brasília, a Boa Vista tem loja em Luís Eduardo Magalhães, na Bahia, e já entregamos projetos em várias regiões do país. O atendimento começa pelo WhatsApp, de onde você estiver.",
+    },
+    {
       q: "Onde fica a loja e como funciona o atendimento?",
       a: "A loja fica no SIA Trecho 2, Lote 2005 a 2015, Sala 101A, em Brasília. O atendimento é de segunda a sexta, das 9h às 19h, e aos sábados das 9h às 12h. Fora desses horários, é possível agendar.",
     },
     {
       q: "Como peço um orçamento?",
-      a: "Mande uma mensagem no WhatsApp (61) 99669-4747 contando qual ambiente quer resolver e em que região mora. Se tiver a planta ou as medidas do espaço, envie junto: adianta a conversa.",
+      a: "Mande uma mensagem no WhatsApp (61) 99669-4747 contando qual ambiente quer resolver e em que cidade você mora. Se tiver a planta ou as medidas do espaço, envie junto: adianta a conversa.",
     },
   ],
 

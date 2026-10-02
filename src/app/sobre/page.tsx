@@ -5,12 +5,14 @@ import { CtaBlock } from "@/components/CtaBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadSection } from "@/components/LeadSection";
 import { PageHeader } from "@/components/PageHeader";
+import { AmbienceStrip } from "@/components/AmbienceStrip";
 import { PartnersSection } from "@/components/PartnersSection";
 import { SplitTitle } from "@/components/SplitTitle";
 import { YouTubeFacade } from "@/components/VideoPlayer";
 import { absoluteUrl } from "@/lib/env";
 import { organizationId } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/seo";
+import { projectBySlug } from "@/content/ambientes";
 import { siteConfig } from "@/site.config";
 
 export const metadata: Metadata = pageMetadata({
@@ -108,6 +110,19 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      {/* respiro: ambientes executados */}
+      <section aria-label="Ambientes executados pela Boa Vista Brasília" className="bg-surface pt-20 sm:pt-28">
+        <Container>
+          <AmbienceStrip
+            images={[
+              projectBySlug("dormitorio")!.images[1],
+              projectBySlug("home-office")!.images[1],
+              projectBySlug("banheiro-e-lavabo")!.images[0],
+            ]}
+          />
+        </Container>
+      </section>
+
       {/* os três sócios, com o mesmo peso */}
       <PartnersSection withLink={false} />
 
@@ -118,7 +133,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <SplitTitle id="casacor" text="A marcenaria da CASACOR Brasília 2026" className="display text-[2.1rem] text-surface sm:text-[3rem]" />
               <p data-reveal="fade" className="mt-7 max-w-[54ch] leading-relaxed text-surface/80">
-                A Boa Vista assinou a marcenaria de um dos espaços da CASACOR Brasília 2026, no projeto do arquiteto Jorge Zardo. Uma mostra é o lugar
+                A Boa Vista executou a marcenaria do Espaço Deca na CASACOR Brasília 2026, no projeto do arquiteto Jorge Zardo. Uma mostra é o lugar
                 onde o acabamento fica exposto de perto, com o visitante abrindo cada gaveta.
               </p>
               <p data-reveal="fade" className="mt-4 max-w-[54ch] leading-relaxed text-surface/80">

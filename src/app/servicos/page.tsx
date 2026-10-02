@@ -35,7 +35,7 @@ export default function ServicesPage() {
           { name: "Início", path: "/" },
           { name: "Serviços", path: "/servicos" },
         ]}
-        image={{ src: "/fotos/gaveta-mao.jpg", alt: "Mão fechando uma gaveta com interior de madeira em um armário preto" }}
+        image={{ src: "/fotos/servicos-topo.jpg", alt: "Cozinha e sala integradas com ripado de madeira, ilha ampla e iluminação embutida" }}
         position="50% 45%"
       />
 
@@ -91,7 +91,7 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="lg:col-span-5 lg:col-start-8">
-              <VideoPlayer {...siteConfig.videos.detalhes} caption="Gravado no espaço da Boa Vista Brasília na CASACOR Brasília 2026." className="max-w-[420px] lg:ml-auto" />
+              <VideoPlayer {...siteConfig.videos.detalhes} caption="Espaço Deca na CASACOR Brasília 2026, com marcenaria executada pela Boa Vista Brasília." className="max-w-[420px] lg:ml-auto" />
             </div>
           </div>
         </Container>

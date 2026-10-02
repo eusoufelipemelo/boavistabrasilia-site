@@ -34,21 +34,21 @@ export function PartnersSection({ withLink = true }: { withLink?: boolean }) {
           </div>
         </div>
 
-        {/* faixa de fotos: os três trabalhando, mais os três retratos, sem legenda */}
-        <div data-reveal="image" className="relative mt-14 aspect-[16/10] overflow-hidden bg-surface-alt sm:aspect-[21/9]">
-          <Image
-            src="/fotos/socios-projeto.jpg"
-            alt="Os três sócios da Boa Vista Brasília analisando um projeto juntos, com o horizonte de Brasília ao fundo"
-            fill
-            sizes="(min-width: 1024px) 80vw, 100vw"
-            className="object-cover"
-            style={{ objectPosition: "50% 40%" }}
-          />
-        </div>
-        <div className="mt-3 grid grid-cols-3 gap-3 sm:mt-4 sm:gap-4">
+        {/* faixa discreta: os três trabalhando e os três retratos, sem legenda individual */}
+        <div className="mt-12 grid grid-cols-3 gap-3 sm:gap-4 lg:grid-cols-6">
+          <div data-reveal="image" className="relative col-span-3 h-[200px] overflow-hidden bg-surface-alt sm:h-[280px] lg:h-[240px]">
+            <Image
+              src="/fotos/socios-projeto.jpg"
+              alt="Os três sócios da Boa Vista Brasília analisando um projeto juntos, com o horizonte de Brasília ao fundo"
+              fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="object-cover"
+              style={{ objectPosition: "50% 38%" }}
+            />
+          </div>
           {a.portraits.map((src) => (
-            <div key={src} data-reveal="image" className="relative aspect-[4/5] overflow-hidden bg-surface-alt">
-              <Image src={src} alt="Sócio da Boa Vista Brasília no showroom" fill sizes="(min-width: 640px) 27vw, 31vw" className="object-cover" />
+            <div key={src} data-reveal="image" className="relative h-[150px] overflow-hidden bg-surface-alt sm:h-[220px] lg:h-[240px]">
+              <Image src={src} alt="Sócio da Boa Vista Brasília no showroom" fill sizes="(min-width: 1024px) 16vw, 31vw" className="object-cover" />
             </div>
           ))}
         </div>

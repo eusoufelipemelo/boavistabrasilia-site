@@ -32,7 +32,7 @@ export default function ProjectsPage() {
           { name: "Início", path: "/" },
           { name: "Ambientes", path: "/projetos" },
         ]}
-        image={{ src: "/fotos/cozinha-madeira.jpg", alt: "Cozinha com marcenaria amadeirada, bancada preta e torneira escura" }}
+        image={{ src: "/fotos/topo-ambientes.jpg", alt: "Cozinha integrada com ilha, mesa de jantar e marcenaria clara até o teto" }}
         position="50% 40%"
       />
 
@@ -51,10 +51,7 @@ export default function ProjectsPage() {
             ))}
           </ul>
 
-          <p className="legenda mt-12 max-w-[60ch]">
-            As fotos de ambiente são ilustrativas, de banco de imagens, e mostram o tipo de solução que a Boa Vista Brasília projeta. As fotos dos
-            projetos entregues entram aqui assim que a loja fizer o registro deles.
-          </p>
+          <p className="legenda mt-12 max-w-[64ch]">Todas as fotos são de ambientes executados com móveis planejados Boa Vista.</p>
         </Container>
       </div>
 

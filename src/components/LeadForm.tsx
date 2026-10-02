@@ -104,15 +104,15 @@ export function LeadForm({ whatsapp, regions, tone = "dark" }: { whatsapp: strin
         />
       </label>
       <label className="block">
-        <span className={label}>Região</span>
+        <span className={label}>Onde você mora</span>
         <select name="regiao" className={`${selectField} mt-2`} defaultValue="">
           <option value="" disabled>
-            Onde fica o imóvel
+            Escolha a região
           </option>
           {regions.map((r) => (
             <option key={r}>{r}</option>
           ))}
-          <option>Outra região do DF ou entorno</option>
+          
         </select>
       </label>
       <label className="block">
