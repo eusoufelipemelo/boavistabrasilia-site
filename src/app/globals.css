@@ -624,3 +624,295 @@ html.lenis body {
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
+
+/*
+ * Apresentação de negócios (/apn-boavistabrasilia): trilho horizontal e trena de navegação.
+ * Fora das camadas para vencer os utilitários do layout do site.
+ */
+html:has([data-apn]),
+html:has([data-apn]) body {
+  overflow: hidden;
+  height: 100%;
+}
+body:has([data-apn], [data-apn-editor]) > header,
+body:has([data-apn], [data-apn-editor]) > footer,
+body:has([data-apn], [data-apn-editor]) > #menu-mobile,
+body:has([data-apn], [data-apn-editor]) > a[aria-label="Conversar no WhatsApp"],
+body:has([data-apn], [data-apn-editor]) > [aria-label="Aviso sobre cookies"] {
+  display: none;
+}
+.apn {
+  height: 100dvh;
+  --barra: 72px;
+  --passo: 64px;
+}
+.apn-trilho {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+.apn-trilho::-webkit-scrollbar {
+  display: none;
+}
+.apn-tela {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden;
+}
+@media (pointer: coarse) {
+  .apn-trilho {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .apn-tela {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+.apn-rolagem {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+}
+.apn-margem {
+  padding: clamp(1.25rem, 4.2vh, 3.5rem) clamp(1.25rem, 5vw, 5rem);
+}
+.apn-tela h2,
+.apn-tela h1 {
+  text-wrap: balance;
+}
+/* Escala: em pé segue a largura; deitado respeita também a altura. */
+.apn-t0 {
+  font-size: clamp(2.3rem, min(5.6vw, 10.5vh), 6rem);
+  line-height: 1.04;
+}
+.apn-t1 {
+  font-size: clamp(2rem, min(4vw, 7.6vh), 4.2rem);
+  line-height: 1.05;
+}
+.apn-t2 {
+  font-size: clamp(1.7rem, min(3vw, 6vh), 3.2rem);
+  line-height: 1.08;
+}
+.apn-c {
+  font-size: clamp(1rem, 1.9vh, 1.2rem);
+  line-height: 1.55;
+}
+@media (orientation: portrait) {
+  .apn-t0 {
+    font-size: clamp(2.3rem, 10.4vw, 5.2rem);
+  }
+  .apn-t1 {
+    font-size: clamp(1.9rem, 8.2vw, 4rem);
+  }
+  .apn-t2 {
+    font-size: clamp(1.6rem, 6.8vw, 3.2rem);
+  }
+}
+/* Foto inteira no computador; no celular em pé, a foto passeia devagar de um lado ao outro. */
+.apn-pan-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (orientation: portrait) {
+  .apn-pan-foto {
+    width: auto;
+    max-width: none;
+    right: auto;
+    transform: translateX(calc((-100% + 100vw) * 0.5));
+  }
+  [data-ativa] .apn-pan-foto {
+    animation: apn-passeio 18s ease-in-out infinite alternate;
+  }
+}
+@keyframes apn-passeio {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% + 100vw));
+  }
+}
+/* Convite para rolar: um traço que anda para o lado. */
+.apn-dica {
+  display: inline-block;
+  width: 3rem;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  animation: apn-dica 2.2s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+@keyframes apn-dica {
+  0% {
+    transform: scaleX(0);
+  }
+  55%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+.apn-pessoal [data-apn-boasvindas]:not([data-pronta]) {
+  visibility: hidden;
+}
+/* Barra da trena */
+.apn-barra {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  height: calc(var(--barra) + env(safe-area-inset-bottom));
+  padding: 0 clamp(0.5rem, 2vw, 1.5rem) env(safe-area-inset-bottom);
+  background: var(--surface);
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+}
+.apn-botao {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+.apn-botao:hover:not(:disabled) {
+  background: var(--surface-alt);
+}
+.apn-botao:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.apn-capitulo {
+  flex: 0 0 13rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.apn-contador {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  padding: 0 0.5rem;
+}
+.apn-trena {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+/* A fita corre por baixo da marca fixa no centro, como numa trena de verdade. */
+.apn-fita {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  width: calc(var(--total) * var(--passo));
+  margin-left: calc(var(--passo) / -2);
+  transform: translateX(calc(var(--pos, 0) * var(--passo) * -1));
+  will-change: transform;
+  background-image:
+    repeating-linear-gradient(to right, var(--ink) 0 1.5px, transparent 1.5px var(--passo)),
+    repeating-linear-gradient(to right, color-mix(in srgb, var(--ink) 45%, transparent) 0 1px, transparent 1px calc(var(--passo) / 5));
+  background-size:
+    100% 14px,
+    100% 7px;
+  background-repeat: no-repeat;
+  background-position: calc(var(--passo) / 2) top;
+}
+.apn-numero {
+  flex: 0 0 var(--passo);
+  padding-top: 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.apn-numero:hover {
+  color: var(--ink);
+}
+.apn-numero[aria-current] {
+  color: var(--ink);
+  font-weight: 700;
+}
+.apn-marca {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 24px;
+  margin-left: -1px;
+  background: var(--ink);
+}
+.apn-indice {
+  margin: auto auto 0 clamp(0px, 2vw, 1.5rem);
+  width: min(26rem, 100%);
+  max-height: 100dvh;
+  overflow-y: auto;
+  padding: 1.25rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom));
+  background: var(--surface);
+  color: var(--ink);
+}
+.apn-indice::backdrop {
+  background: rgb(32 30 30 / 0.55);
+}
+@media (max-width: 767px) {
+  .apn {
+    --barra: 56px;
+    --passo: 44px;
+  }
+  .apn-capitulo,
+  .apn-seta {
+    display: none;
+  }
+  .apn-numero {
+    padding-top: 16px;
+  }
+  .apn-indice {
+    margin: auto 0 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+/* Celular deitado: pouca altura, tudo mais compacto. */
+@media (max-height: 480px) {
+  .apn {
+    --barra: 48px;
+  }
+  .apn-margem {
+    padding-block: 0.75rem;
+  }
+  .apn-logo {
+    height: 1.9rem;
+  }
+  .apn-numero {
+    padding-top: 13px;
+    font-size: 0.85rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .apn-dica {
+    animation: none;
+  }
+  [data-ativa] .apn-pan-foto {
+    animation: none;
+  }
+}
